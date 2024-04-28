@@ -2,6 +2,15 @@
 #include <string>
 #include <iostream>
 
+char GetLowerOrUpperCharacter(int combinedDistance, int offset) {
+	if (combinedDistance > 25) {
+		return char((combinedDistance) % 26) + offset;
+	}
+	else {
+		return char((combinedDistance)+offset);
+	}
+}
+
 char GetCharacter(char character, int key) {
 	if (!isalpha(character)) {
 		return character;
@@ -10,22 +19,11 @@ char GetCharacter(char character, int key) {
 
 	if (isupper(character)) {
 		combinedDistance = (int(character) - 65) + key;
-		if (combinedDistance > 25) {
-			return char((combinedDistance) % 26) + 65;
-		}
-		else {
-			return char((combinedDistance) + 65);
-		}
-
+		return GetLowerOrUpperCharacter(combinedDistance, 65);
 	}
 	else {
 		combinedDistance = (int(character) - 97) + key;
-		if (combinedDistance > 25) {
-			return char((combinedDistance) % 26) + 97;
-		}
-		else {
-			return char((combinedDistance)+97);
-		}
+		return GetLowerOrUpperCharacter(combinedDistance, 97);
 	}
 }
 
